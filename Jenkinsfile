@@ -4,12 +4,13 @@ pipeline{
     stages{
         stage("Static code analysis"){
             agent {
-                docker{
+                docker
+                {
                     image 'openjdk:11'
                 }
             }
             steps{
-                withSonarQubeEnv(credentialsId: 'sonar-token') {
+                withSonarQubeEnv(credentialsId: 'tokenforsonargit ') {
                     sh 'chmod +x gradlew'
                     sh './gradlew sonarqube'
                 }
