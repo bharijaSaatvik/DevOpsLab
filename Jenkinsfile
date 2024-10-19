@@ -4,15 +4,16 @@ pipeline{
     stages{
         stage("Static code analysis"){
             agent {
-                docker
-                {
+                docker {
                     image 'openjdk:11'
                 }
             }
             steps{
-                withSonarQubeEnv('sonarserver') {
-                    sh 'chmod +x gradlew'
-                    sh './gradlew sonarqube'
+                script {
+                    withSonarQubeEnv('sonarserver') {
+                        sh 'chmod +x gradlew'
+                        sh './gradlew sonarqube'
+                }
                 }
             }
            
