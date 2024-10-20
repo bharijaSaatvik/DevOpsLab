@@ -1,13 +1,12 @@
 pipeline{
     agent any
-
     stages{
         stage("Static code analysis"){
-            // agent {
-            //     docker {
-            //         image 'openjdk:17'
-            //     }
-            // }
+            agent {
+                docker {
+                    image 'openjdk:17'
+                }
+            }
             steps{
                 script {
                     withSonarQubeEnv('sonarserver') {
